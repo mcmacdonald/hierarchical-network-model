@@ -89,7 +89,7 @@ Ck <- function(g){
   x <- dplyr::filter(x, d != 1) # drop degree = 1 because clustering = 0 by default 
   
   # interpretation
-  cat("... slopes > -0.75 indicative to hierarchy; slopes > -1.00 provide stronger evidence."); cat("\n")
+  cat("... slopes < -0.75 indicative to hierarchy; slopes < -1.00 provide stronger evidence."); cat("\n")
   
   # estimate the slope
   b <- lm(log(c) ~ log(d), data = x)
