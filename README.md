@@ -25,13 +25,13 @@ This script imports the numerous data sources and symmetrizes them prior to the 
 
 CITATIONS:
 
-Clauset, A., Shalizi, C. R., & Newman, M. E. (2009). Power-law distributions in empirical data. SIAM review, 51(4), 661-703.
+Clauset, A., Shalizi, C. R., & Newman, M. E. 2009. Power-law distributions in empirical data. SIAM review, 51(4), 661-703.
 
-Gabaix, X., & Ibragimov, R. (2011). Rank− 1/2: a simple way to improve the OLS estimation of tail exponents. Journal of Business & Economic Statistics, 29(1), 24-39.
+Gabaix, X., & Ibragimov, R. 2011. Rank− 1/2: a simple way to improve the OLS estimation of tail exponents. Journal of Business & Economic Statistics, 29(1), 24-39.
 
 Morselli, C., 2009. Inside criminal networks. New York, NY: Springer.
 
-Natarajan, M. 2000. Understanding the structure of a drug trafficking organization: a conversational analysis. Crime Prevention Studies, 11, 273-298.
+Natarajan, M. 2000. Understanding the structure of a drug trafficking organization: A conversational analysis. Crime Prevention Studies, 11, 273-298.
 
 Natarajan, M. 2006. Understanding the Structure of a Large Heroin Distribution Network: A Quantitative Analysis of Qualitative Data. Quantitative Journal of Criminology, 22(2), 171-192.
 
