@@ -4,9 +4,9 @@ An .r script to calculate the slope that describes the level of hierarchy in soc
 
 For adjacency graphs, Ravasz & Barabási (2003) propose to measure the level of hierarchy by:
 
-c(*k*) ~ *k*^<sup>y</sup>
+c(*k*) ~ *k*<sup>Y</sup>
 
-where c(k) is the average clustering coefficient by degree k, k represents the elements throughout the degree distribution, and the exponent y is the slope that describes the level of hierarchy throughout the degree distribution. A negative slope indicates that the high degrees in the upper-tail of the degree distribution have less cohesive social circles in comparison to small degrees. A slope = -1 provides strong evidence of hierarchy. The steeper the slope, the greater the level of hierarcy. The original paper by Ravasz & Barabási (2003) describes the procedures in more detail.
+where c(*k*) is the average clustering coefficient by degree *k*, *k* represents the elements throughout the degree distribution, and the exponent Y is the slope that describes the level of hierarchy throughout the degree distribution. To be sure, the slope scales by *k*<sup>Y</sup> orders of magnitude. A negative slope indicates that the high degrees in the upper-tail of the degree distribution have less cohesive social circles in comparison to small degrees. A slope = -1 provides strong evidence of hierarchy. The steeper the slope, the greater the level of hierarcy. The original paper by Ravasz & Barabási (2003) describes the procedures in more detail.
 
 This script imports different drug trafficking networks and symmetrizes them: 
 
