@@ -8,7 +8,7 @@ c(k) ~ k<sup>Y</sup>
 
 where c(*k*) is the average clustering coefficient by degree *k*, *k* represents the elements throughout the degree distribution, and the exponent Y is the slope that describes the level of hierarchy throughout the degree distribution. The ck() command in this .r script calculates the gradient of the slope and standard errors that provide the probable range of the slope. I use the procedures in Gabaix & Ibragimov (2011) to calculate the standard error of the slope [Clauset et al. (2009) explain why ordinary least squares does not accurately calculate the standard error of the power-law slope].
 
-The script uses ordinary least squares to regress the logged average clustering coefficient by degree *k* on the logged degree distribution. The log-log regression implies that the gradient of the slope scales by *k*<sup>Y</sup> orders of magnitude. A negative slope indicates that the high degrees in the upper-tail of the degree distribution have less cohesive social circles in comparison to small degrees. The steeper the slope, the greater the level of hierarcy. A slope = -1 provides strong evidence of hierarchy.
+The script uses ordinary least squares to regress the logged average clustering coefficient by degree *k* on the logged degree distribution. The log-log regression implies that the gradient of the slope scales by k<sup>Y</sup> orders of magnitude. A negative slope indicates that the high degrees in the upper-tail of the degree distribution have less cohesive social circles in comparison to small degrees. The steeper the slope, the greater the level of hierarcy. A slope = -1 provides strong evidence of hierarchy.
 
 I illustrate the procedures on different drug trafficking networks:
 
