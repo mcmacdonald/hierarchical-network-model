@@ -1,7 +1,7 @@
 #  --------------------------------------------------------------------------
 
 # import and manipulate data used to calculate the hierarchical network model
-# note: you must run this file before you run file named '02_Ck.R'
+# note: you must run this file before you run file named '02_ck.R'
 
 # ---------------------------------------------------------------------------
 
