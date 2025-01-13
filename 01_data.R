@@ -21,16 +21,16 @@ import = function(file){
   data = data[-1, -1] # drop first row, column (i.e, vertex labels)
   return(data)
 }
-siren    = import(file = "https://github.com/mcmacdonald/criminal-networks/tree/master/dataCAVIAR_FULL.csv") # siren auto theft
-togo     = import(file = "https://github.com/mcmacdonald/criminal-networks/tree/master/data/TOGO.csv") # togo auto theft
-caviar   = import(file = "https://github.com/mcmacdonald/criminal-networks/tree/master/data/CAVIAR_FULL.csv") # caviar drug trafficking network - Morselli
-cocaine  = import(file = "https://github.com/mcmacdonald/criminal-networks/tree/master/data/COCAINE_DEALING.csv") # NY cocaine trafficking network - Natarajan
-heroin   = import(file = "https://github.com/mcmacdonald/criminal-networks/tree/master/data/HEROIN_DEALING.csv") # NY heroin trafficking network - Natarajan
-cielnet  = import(file = "https://github.com/mcmacdonald/criminal-networks/tree/master/data/CIELNET.csv") # CielNet (Montreal drug runner) network - Morselli
-italian  = import(file = "https://github.com/mcmacdonald/criminal-networks/tree/master/data/ITALIAN_GANGS.csv") # Italian gangs
-london   = import(file = "https://github.com/mcmacdonald/criminal-networks/tree/master/data/LONDON_GANG.csv") # London gangs
-montreal = import(file = "https://github.com/mcmacdonald/criminal-networks/tree/master/data/MONTREALGANG.csv") # Montreal gangs
-infinito = import(file = "https://github.com/mcmacdonald/criminal-networks/tree/master/data/NDRANGHETAMAFIA_2M.csv") # Ndrangheta meeting participation i.e., Operation Infinito
+siren    = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/CAVIAR_FULL.csv") # siren auto theft
+togo     = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/TOGO.csv") # togo auto theft
+caviar   = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/CAVIAR_FULL.csv") # caviar drug trafficking network - Morselli
+cocaine  = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/COCAINE_DEALING.csv") # NY cocaine trafficking network - Natarajan
+heroin   = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/HEROIN_DEALING.csv") # NY heroin trafficking network - Natarajan
+cielnet  = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/CIELNET.csv") # CielNet (Montreal drug runner) network - Morselli
+italian  = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/ITALIAN_GANGS.csv") # Italian gangs
+london   = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/LONDON_GANG.csv") # London gangs
+montreal = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/MONTREALGANG.csv") # Montreal gangs
+infinito = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/NDRANGHETAMAFIA_2M.csv") # Ndrangheta meeting participation i.e., Operation Infinito
 
 # transpose the infinto meeting network from bipartite into unipartite graph
 infinito = igraph::graph.incidence(
