@@ -1,7 +1,8 @@
+# ---------------------------------------------------------------------------------------
 
+# file 02: calculate the slope that detects the level of hierarchy inside social networks
 
-
-# calculate the slope that detects the level of hierarchy inside social networks
+# ---------------------------------------------------------------------------------------
 
 
 
