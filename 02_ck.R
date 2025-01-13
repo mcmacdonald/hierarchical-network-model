@@ -4,69 +4,6 @@
 
 # ---------------------------------------------------------------------------------------
 
-
-
-# function to import data ------------------------------------------------------
-import = function(file){
-  data = utils::read.csv(
-    file   = file, 
-    header = FALSE, 
-    stringsAsFactors = FALSE, 
-    fileEncoding = "UTF-8-BOM"
-    ); 
-  data = data[-1, -1] # drop first row, column (i.e, vertex labels)
-  return(data)
-}
-# import drug trafficking networks
-caviar   = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/CAVIAR_FULL.csv") # caviar drug trafficking network - Morselli
-heroin   = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/HEROIN_DEALING.csv") # NY heroin trafficking network - Natarajan
-
-
-# symmetrize the network data --------------------------------------------------
-
-# Function has three steps:
-# 1. transform matrices into graphs
-# 2. get binary graphs, or graphs with no edge weights
-# 3. transform into symmetric edgelist
-symmetrize = function(mat){
-  mat[is.na(mat)] <- 0 # set missing cells = 0 i.e., no tie (in case of missings)
-  mat = as.matrix(mat) # coerce to matrix
-  mat = igraph::graph_from_adjacency_matrix( # adj matrix
-    adjmatrix = mat,
-    mode = "undirected", 
-    weighted = NULL, 
-    diag = FALSE
-    )
-  mat = igraph::simplify( # into binary network
-    graph = mat, 
-    remove.loops = TRUE, 
-    remove.multiple = TRUE
-    )
-  mat = igraph::as_edgelist( # into edgelist
-    graph = mat, 
-    names = TRUE
-    )
-  mat = as.data.frame( # back to dataframe
-    x = mat, 
-    stringsAsFactors = FALSE
-    ) 
-  mat = dplyr::rename( # rename columns
-    mat, 
-    i = V1, 
-    j = V2
-    )
-  mat = igraph::graph_from_data_frame( # return graph object
-    d = mat, 
-    directed = FALSE
-    )
-  # close function
-}
-# symmetrize graphs 
-caviar   = symmetrize(caviar)
-heroin   = symmetrize(heroin)
-
-
-
 # calculate the slope that summarizes hierarchy --------------------------------
 # i.e., regress (log) average cliquishness on (log) degree distribution
 # outputs: 1) slope; 2) p-value of the slope; 3) probable range of the slope
@@ -137,7 +74,5 @@ Ck <- function(g){
 }
 Ck(caviar)
 Ck(heroin)
-
-
 
 # close .r script
