@@ -12,16 +12,13 @@ import = function(file){
     header = FALSE, 
     stringsAsFactors = FALSE, 
     fileEncoding = "UTF-8-BOM"
-  ); 
+    ); 
   data = data[-1, -1] # drop first row, column (i.e, vertex labels)
   return(data)
 }
 # import drug trafficking networks
-d_caviar   = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/CAVIAR_FULL.csv") # caviar drug trafficking network - Morselli
-d_cocaine  = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/COCAINE_DEALING.csv") # NY cocaine trafficking network - Natarajan
-d_heroin   = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/HEROIN_DEALING.csv") # NY heroin trafficking network - Natarajan
-d_cielnet  = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/CIELNET.csv") # CielNet (Montreal drug runner) network - Morselli
-
+caviar   = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/CAVIAR_FULL.csv") # caviar drug trafficking network - Morselli
+heroin   = import(file = "https://raw.githubusercontent.com/mcmacdonald/criminal-networks/master/data/HEROIN_DEALING.csv") # NY heroin trafficking network - Natarajan
 
 
 # symmetrize the network data --------------------------------------------------
@@ -64,10 +61,8 @@ symmetrize = function(mat){
   # close function
 }
 # symmetrize graphs 
-d_caviar   = symmetrize(mat = d_caviar)
-d_cocaine  = symmetrize(mat = d_cocaine)
-d_heroin   = symmetrize(mat = d_heroin)
-d_cielnet  = symmetrize(mat = d_cielnet)
+caviar   = symmetrize(caviar)
+heroin   = symmetrize(heroin)
 
 
 
@@ -92,16 +87,14 @@ Ck <- function(g){
   cat("... slopes < -0.75 indicative to hierarchy; slopes < -1.00 provide stronger evidence."); cat("\n")
   
   # estimate the slope
-  b <- lm(log(c) ~ log(d), data = x)
-  m <- coefficients(b)[[2]] # slope
-  m <- round(m, digits = 2) # round
-  cat("slope: "); cat(m); cat("\n")
-  p <- summary(b)$coefficients[2,4] # p-value
+  m <- lm(log(c) ~ log(d), data = x)
+  b <- coefficients(m)[[2]] # slope
+  cat("slope: "); cat(round(b, digits = 2)); cat("\n")
+  p <- summary(m)$coefficients[2,4] # p-value
   cat("p-val: "); cat(p); cat("\n")
   
   # calculate the standard error
   # I use Gabaix & Ibragimov's method: https://scholar.google.ca/citations?view_op=view_citation&hl=en&user=aCSds20AAAAJ&citation_for_view=aCSds20AAAAJ:UebtZRa9Y70C
-  b <- coefficients(b)[[2]] # slope
   n <- igraph::ecount(g)    # dyads
   q <- abs(b) * sqrt(2/n)   # error
   
@@ -110,13 +103,40 @@ Ck <- function(g){
   lo <- b - (q * 1.96); lo <- round(lo, digits = 2)
   cat("range: "); cat("["); cat(hi); cat(", "); cat(lo); cat("]")
   cat("\n"); cat("\n")
+  
+  # plot the slope
+  b = coef(m)
+  line  = function(x) exp(b[[1]] + b[[2]] * log(x))
+  alpha = -b[[2]]
+  R2    = summary(m)$r.squared
+  print(paste("Alpha =", round(x = alpha, digits = 3) 
+              ) 
+        )
+  print(paste("R2 =", round(x = R2, digits = 3)
+              )
+        )
+  k1 <- 1 # min degree
+  kn <- max(d) # max degree
+  options(scipen = 999) # turn off scientific notation in Y-axis
+  plot(x$c ~ x$d, 
+       log = "xy",
+       xlim = c(k1, kn), # x-axis scale 
+       ylim = c(0.01, 1.10), # y-axis scale
+       xlab = "degree k (log)", 
+       ylab = "average clustering coefficient for degree k (log)", 
+       main = "SCALING IN HIERARCHICAL NETWORKS",
+       pch = 1, 
+       cex = 2)
+  curve(line, 
+        col = "black", 
+        lwd = 2, 
+        add = TRUE, 
+        n = length(d)
+        )
 }
-Ck(d_caviar)
-Ck(d_cielnet)
-Ck(d_cocaine)
-Ck(d_heroin)
+Ck(caviar)
+Ck(heroin)
 
 
 
-
-
+# close .r script
